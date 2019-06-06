@@ -1,0 +1,27 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String!
+  password: String!
+}
+
+type Workspace {
+	id: ID! @id
+	name: String! @unique
+	collections: [Collection!]! @relation(name: "WorkspaceCollections")
+	pages: [Page!]! @relation(name: "WorkspacePages")
+}
+
+type Collection {
+	id: ID! @id
+	name: String!
+	workspace: Workspace @relation(name: "WorkspaceCollections")
+}
+
+type Page {
+	id: ID! @id
+	title: String!
+	workspace: Workspace! @relation(name: "WorkspacePages")
+	collections: [Collection!]! @relation(name: "PageCollections")
+	content: Json
+}

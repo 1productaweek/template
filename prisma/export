@@ -1,0 +1,6 @@
+function exporter {
+	echo $1/src/db/prisma.graphql
+	cp generated/prisma.graphql ../$1/src/db/prisma.graphql
+}
+
+exporter api
